@@ -44,6 +44,7 @@ public abstract class ChartBaseManager<T extends Chart, U extends Entry> extends
     protected static final int HIGHLIGHTS = 8;
 
     protected static final int SET_DATA_AND_LOCK_INDEX = 9;
+    protected static final int RESET_Y_AXIS_MINIMUM = 10;
 
     abstract DataExtract getDataExtract();
 

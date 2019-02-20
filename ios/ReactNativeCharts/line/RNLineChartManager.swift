@@ -51,7 +51,7 @@ open class RNLineChartManager: RCTViewManager, RNBarLineChartBaseManager {
   }
 
   func resetYAxisMinimum(_ reactTag: NSNumber, axisDependency: NSString) {
-    (self as RNBarLineChartBaseManager)._resetLeftYAxisMinimum(reactTag, axisDependency)
+    (self as RNBarLineChartBaseManager)._resetYAxisMinimum(reactTag, axisDependency: axisDependency)
   }
 
 }

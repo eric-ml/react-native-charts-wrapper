@@ -282,7 +282,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "moveViewToAnimated", MOVE_VIEW_TO_ANIMATED,
                 "fitScreen", FIT_SCREEN,
                 "highlights", HIGHLIGHTS,
-                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX);
+                "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
+                "resetYAxisMinimum", RESET_Y_AXIS_MINIMUM);
 
         if (commandsMap != null) {
             map.putAll(commandsMap);
@@ -323,6 +324,10 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             case SET_DATA_AND_LOCK_INDEX:
                 setDataAndLockIndex(root, args.getMap(0));
+                return;
+
+            case RESET_Y_AXIS_MINIMUM:
+                root.getAxis(args.getString(0).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT).resetAxisMinimum();
                 return;
         }
 

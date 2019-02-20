@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import update from 'immutability-helper';
 
-import {LineChart} from 'react-native-charts-wrapper';
+import { LineChart } from 'react-native-charts-wrapper';
 
 class LineChartScreen extends React.Component {
 
@@ -29,6 +29,11 @@ class LineChartScreen extends React.Component {
         granularityEnabled: true,
         granularity: 1,
       },
+      yAxis: {
+        left: {
+          axisMinimum: 100,
+        }
+      }
       // visibleRange: {x: {min: 1, max: 2}}
     };
   }
@@ -40,11 +45,11 @@ class LineChartScreen extends React.Component {
         data: {
           $set: {
             dataSets: [{
-              values: [{x: 4, y: 135}, {x: 5, y: 0.88}, {x: 6, y: 0.77}, {x: 7, y: 105}], label: 'A',
+              values: [{ x: 4, y: 135 }, { x: 5, y: 0.88 }, { x: 6, y: 0.77 }, { x: 7, y: 105 }], label: 'A',
             }, {
-              values: [{x: 4, y: 105}, {x: 5, y: 90}, {x: 6, y: 130}, {x: 7, y: 100}], label: 'B',
+              values: [{ x: 4, y: 105 }, { x: 5, y: 90 }, { x: 6, y: 130 }, { x: 7, y: 100 }], label: 'B',
             }, {
-              values: [{x: 4, y: 110}, {x: 5, y: 110}, {x: 6, y: 105}, {x: 7, y: 115}], label: 'C',
+              values: [{ x: 4, y: 110 }, { x: 5, y: 110 }, { x: 6, y: 105 }, { x: 7, y: 115 }], label: 'C',
             }],
           }
         }
@@ -55,53 +60,60 @@ class LineChartScreen extends React.Component {
   }
 
   onPressLearnMore() {
-
     this.refs.chart.setDataAndLockIndex({
       dataSets: [{
         values: [
-          {x: 1, y: 0.88},
-          {x: 2, y: 0.77},
-          {x: 3, y: 105},
-          {x: 4, y: 135},
-          {x: 5, y: 0.88},
-          {x: 6, y: 0.77},
-          {x: 7, y: 105},
-          {x: 8, y: 135}
+          { x: 1, y: 0.88 },
+          { x: 2, y: 0.77 },
+          { x: 3, y: 105 },
+          { x: 4, y: 135 },
+          { x: 5, y: 0.88 },
+          { x: 6, y: 0.77 },
+          { x: 7, y: 105 },
+          { x: 8, y: 135 }
         ],
         label: 'A',
       }, {
         values: [
-          {x: 1, y: 90},
-          {x: 2, y: 130},
-          {x: 3, y: 100},
-          {x: 4, y: 105},
-          {x: 5, y: 90},
-          {x: 6, y: 130},
-          {x: 7, y: 100},
-          {x: 8, y: 105}
+          { x: 1, y: 90 },
+          { x: 2, y: 130 },
+          { x: 3, y: 100 },
+          { x: 4, y: 105 },
+          { x: 5, y: 90 },
+          { x: 6, y: 130 },
+          { x: 7, y: 100 },
+          { x: 8, y: 105 }
         ],
         label: 'B',
       }, {
         values: [
-          {x: 1, y: 110},
-          {x: 2, y: 105},
-          {x: 3, y: 115},
-          {x: 4, y: 110},
-          {x: 5, y: 110},
-          {x: 6, y: 105},
-          {x: 7, y: 115},
-          {x: 8, y: 110}],
+          { x: 1, y: 110 },
+          { x: 2, y: 105 },
+          { x: 3, y: 115 },
+          { x: 4, y: 110 },
+          { x: 5, y: 110 },
+          { x: 6, y: 105 },
+          { x: 7, y: 115 },
+          { x: 8, y: 110 }],
         label: 'C',
       }],
     })
   }
 
+  resetAxis() {
+    const clone = Object.assign({}, this.state.yAxis);
+    clone.left = {};
+    this.setState({ yAxis: clone });
+
+    this.refs.chart.resetYAxisMinimum('left');
+  }
+
   handleSelect(event) {
     let entry = event.nativeEvent
     if (entry == null) {
-      this.setState({...this.state, selectedEntry: null})
+      this.setState({ ...this.state, selectedEntry: null })
     } else {
-      this.setState({...this.state, selectedEntry: JSON.stringify(entry)})
+      this.setState({ ...this.state, selectedEntry: JSON.stringify(entry) })
     }
 
     console.log(event.nativeEvent)
@@ -109,11 +121,12 @@ class LineChartScreen extends React.Component {
 
   render() {
     return (
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
 
-        <Button onPress={this.onPressLearnMore.bind(this)} title="Press to load more"/>
+        <Button onPress={this.onPressLearnMore.bind(this)} title="Press to load more" />
+        <Button onPress={this.resetAxis.bind(this)} title="reset axis" />
 
-        <View style={{height: 80}}>
+        <View style={{ height: 80 }}>
           <Text> selected entry</Text>
           <Text> {this.state.selectedEntry}</Text>
         </View>
@@ -122,7 +135,7 @@ class LineChartScreen extends React.Component {
           <LineChart
             style={styles.chart}
             data={this.state.data}
-            chartDescription={{text: ''}}
+            chartDescription={{ text: '' }}
             legend={this.state.legend}
             marker={this.state.marker}
             xAxis={this.state.xAxis}

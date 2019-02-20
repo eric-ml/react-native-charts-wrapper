@@ -10,5 +10,6 @@
 @interface RCT_EXTERN_MODULE(RNLineChartManager, RCTViewManager)
 
 EXPORT_BAR_LINE_CHART_BASE_PROPERTIES
+RCT_EXTERN_METHOD(resetYAxisMinimum:(nonnull NSNumber *)node axisDependency:(nonnull NSString *)axisDependency)
 
 @end

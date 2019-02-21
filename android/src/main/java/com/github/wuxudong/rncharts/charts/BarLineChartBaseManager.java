@@ -333,6 +333,7 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
 
             case RESET_Y_AXIS_MINIMUM:
                 root.getAxis(args.getString(0).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT).resetAxisMinimum();
+                root.notifyDataSetChanged();
                 return;
 
             case SET_Y_AXIS_MINIMUM:

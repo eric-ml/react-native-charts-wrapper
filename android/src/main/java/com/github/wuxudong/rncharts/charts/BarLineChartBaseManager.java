@@ -326,8 +326,8 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 setDataAndLockIndex(root, args.getMap(0));
                 return;
 
-            case RESET_Y_AXIS_MINIMUM:
-                root.getAxis(args.getString(0).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT).resetAxisMinimum();
+            case SET_Y_AXIS_MINIMUM:
+                root.getAxis(args.getString(0).equalsIgnoreCase("right") ? YAxis.AxisDependency.RIGHT : YAxis.AxisDependency.LEFT).setAxisMinimum((float) args.getDouble(1));
                 return;
         }
 

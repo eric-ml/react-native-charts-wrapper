@@ -11,5 +11,6 @@
 
 EXPORT_BAR_LINE_CHART_BASE_PROPERTIES
 RCT_EXTERN_METHOD(resetYAxisMinimum:(nonnull NSNumber *)node axisDependency:(nonnull NSString *)axisDependency)
+RCT_EXTERN_METHOD(setYAxisMinimum:(nonnull NSNumber *)node axisDependency:(nonnull NSString *)axisDependency minValue:(nonnull NSNumber *)min)
 
 @end

@@ -73,6 +73,15 @@ extension RNBarLineChartBaseManager {
       (view.chart as! BarLineChartViewBase).getAxis(BridgeUtils.parseAxisDependency(axisDependency as String)).resetCustomAxisMin();
     }
   }
+  
+  func _setYAxisMinimum(_ reactTag: NSNumber, axisDependency: NSString, minValue: NSNumber) {
+    _bridge?.uiManager.addUIBlock { (uiManager: RCTUIManager?, viewRegistry:[NSNumber : UIView]?) in
+      let view: RNBarLineChartViewBase = viewRegistry![reactTag] as! RNBarLineChartViewBase;
+      let axisDepency: YAxis.AxisDependency = BridgeUtils.parseAxisDependency(axisDependency as String);
+      let yAxis:YAxis = (view.chart as! BarLineChartViewBase).getAxis(axisDepency);
+      yAxis.axisMinimum = minValue.doubleValue;
+    }
+  }
 }
 
 

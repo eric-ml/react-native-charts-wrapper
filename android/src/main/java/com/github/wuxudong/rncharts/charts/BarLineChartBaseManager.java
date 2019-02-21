@@ -283,8 +283,11 @@ public abstract class BarLineChartBaseManager<T extends BarLineChartBase, U exte
                 "fitScreen", FIT_SCREEN,
                 "highlights", HIGHLIGHTS,
                 "setDataAndLockIndex", SET_DATA_AND_LOCK_INDEX,
-                "resetYAxisMinimum", RESET_Y_AXIS_MINIMUM,
-                "setYAxisMinimum", SET_Y_AXIS_MINIMUM);
+                "resetYAxisMinimum", RESET_Y_AXIS_MINIMUM);
+
+
+        // more than the builder max param number -.-
+        map.put("setYAxisMinimum", SET_Y_AXIS_MINIMUM);
                 
 
         if (commandsMap != null) {
